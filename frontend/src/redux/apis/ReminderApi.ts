@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import Reminders_temp from "../../interfaces";
 
 export const reminderApi = createApi({
   //   reducerPath: "reminderApi",

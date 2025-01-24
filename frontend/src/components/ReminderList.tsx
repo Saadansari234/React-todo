@@ -1,7 +1,6 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import { Button } from "react-bootstrap";
 import { useGetReminderQuery, useUpdateReminderMutation } from "../redux/apis/ReminderApi";
-import Reminders_temp from "../interfaces";
 import { useDeleteReminderMutation } from "../redux/apis/ReminderApi";
 import { useAppDispatch } from "../redux/customHooks";
 import { editReminder, setReminders } from "../redux/slices/reminderSlice";
@@ -29,7 +28,6 @@ function ReminderList() {
 
   useEffect(() => {
     if (fetchedReminders) {
-      // Store the fetched reminders into the local state
       dispatch(setReminders(fetchedReminders));
     }
   }, [fetchedReminders, dispatch]);

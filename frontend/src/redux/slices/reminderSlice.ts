@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Reminders_temp from "../../interfaces";
 
 // const { data } = useGetReminderQuery();
 
@@ -17,9 +16,6 @@ export const reminderSlice = createSlice({
         selectedReminder.isEdit = !selectedReminder.isEdit;
       }
     },
-    isSpeak:(state, action: PayloadAction<number> )=>{
-      
-    }
   },
 });
 
