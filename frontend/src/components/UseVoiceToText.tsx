@@ -25,7 +25,7 @@ export function UseVoiceToText() {
       const currentTranscript = Array.from(event.results)
         .map((result) => result[0].transcript)
         .join("");
-      setTranscript((prev) => prev + " " + currentTranscript);
+      setTranscript( currentTranscript);
     };
 
     recognition.onerror = (event: any) => {
@@ -60,5 +60,6 @@ export function UseVoiceToText() {
     error,
     startListening,
     stopListening,
+    setTranscript
   };
 }

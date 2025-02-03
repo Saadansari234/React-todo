@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 
 const initialState: ReminderState = {
-  isListening: false,
+  isPopup: false,
 };
 
 // Create the slice with proper typings
@@ -10,14 +10,14 @@ export const additionalSlice = createSlice({
   name: "reminderSlice",
   initialState,
   reducers: {
-    setListener: (state) => {
-      state.isListening = !state.isListening; 
+    setModal: (state) => {
+      state.isPopup = !state.isPopup; 
     },
   },
 });
 
 // Export the actions
-export const { setListener } = additionalSlice.actions;
+export const { setModal } = additionalSlice.actions;
 
 // Export the reducer
 export default additionalSlice.reducer;

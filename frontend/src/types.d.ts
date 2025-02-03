@@ -8,7 +8,7 @@ interface Reminders_temp {
 }
 
 interface ReminderState {
-  isListening: boolean;
+  isPopup: boolean;
 }
 
 // voice to text converting interface
