@@ -1,10 +1,27 @@
 :root {
   --app-border: 0.1rem solid #dfdfdf;
 }
+
+button{
+  background:none;
+  border: none;
+}
 .main {
   padding: 2rem;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
+.r-icon{
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+input[type="checkbox"],  
+input[type="radio"] {  
+  cursor: pointer;  
+}
+
 /* modal */
 .modal-listener {
   width: 100%;
@@ -63,7 +80,7 @@
 /* reminder content */
 
 .main .reminder-content {
-  max-width: 450px;
+  max-width: 950px;
   width: 100%;
   border: 1px solid;
   padding: 1rem;
@@ -87,7 +104,17 @@
 }
 
 .reminder-content .reminder-btn{
-all: unset;
 font-size: 1.5rem;
 color: blue;
+}
+
+
+
+.reminder-list .list-right .bi-trash{
+  color: rgba(255, 0, 0, 0.719);
+}
+
+.reminder-list .list-right .bi-x-lg,
+.reminder-list .list-right .bi-pencil-square{
+  color: goldenrod;
 }

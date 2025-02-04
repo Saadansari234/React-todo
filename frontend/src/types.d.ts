@@ -3,8 +3,9 @@ interface Reminders_temp {
   reminder: string;
   isCompleted: boolean;
   isEdit: boolean;
-  isRecording: boolean;
-  isPlaying: boolean;
+  customField: null;
+  createdAt:string;
+  createdAt:string
 }
 
 interface ReminderState {

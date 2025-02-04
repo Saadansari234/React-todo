@@ -22,44 +22,62 @@ function ReminderList() {
     dispatch(editReminder(id));
   };
 
-  const handleSave = (id: number) => {
-    updateReminder({ id, updatedval });
+  const handleSave = (item: Reminders_temp) => {
+    if (updatedval.trim() !== "") {
+      const dataParams = item.id;
+      const newData = { ...item, reminder: updatedval }
+      // console.log(newJson)
+      updateReminder({dataParams,newData});
+    }
   };
 
+  // useEffect(() => {
+  //   fetch("http://localhost:8081/reminders")
+  //     .then(res => res.json())
+  //     .then(data => console.log(data)) // Handle fetched data
+  //     .catch(err => console.error("Error fetching:", err));
+  // }, []);
   useEffect(() => {
+   
     if (fetchedReminders) {
       dispatch(setReminders(fetchedReminders));
     }
   }, [fetchedReminders, dispatch]);
   return (
-    <ListGroup className="py-5">
+    <ListGroup className="py-5 reminder-list">
       {reminders?.map((item: Reminders_temp, idx: number) => (
         <ListGroup.Item key={idx} className="d-flex justify-content-between align-items-center">
           <div>
             {item.isEdit ? (
               <div>
-                <input type="text" onChange={(e) => setUpdatedVal(e.target.value)} value={updatedval} />
-                <Button variant="outline-warning" onClick={() => handleSave(item.id)}>
+                <input type="text" onChange={(e) => setUpdatedVal(e.target.value)} value={updatedval} autoComplete="off" />
+                <Button variant="outline-warning" onClick={() => handleSave(item)}>
                   save
                 </Button>
               </div>
             ) : (
-              <div>{item.reminder}</div>
+              <div className="d-flex gap-2">
+                <input type="checkbox" name="" id="" />
+                <div className="d-flex align-items-center gap-3 ">
+                  <i className="bi bi-grip-vertical r-icon"></i>
+                  <div>{item.reminder}</div>
+                </div>
+              </div>
             )}
           </div>
-          <div>
+          <div className="list-right ">
             {item.isEdit ? (
-              <Button variant="outline-warning" onClick={() => handleEdit(item.id)}>
-              <i className="bi bi-x-lg"></i>
-              </Button>
+              <button onClick={() => handleEdit(item.id)}>
+                <i className="bi bi-x-lg r-icon"></i>
+              </button>
             ) : (
-              <Button variant="outline-warning" onClick={() => handleEdit(item.id)}>
-            <i className="bi bi-pencil-square"></i>
-              </Button>
+              <button onClick={() => handleEdit(item.id)}>
+                <i className="bi bi-pencil-square r-icon"></i>
+              </button>
             )}
-            <Button variant="outline-danger" className="mx-2" onClick={() => handleDelete(item.id)}>
-            <i className="bi bi-trash"></i>
-            </Button>
+            <button className="mx-2" onClick={() => handleDelete(item.id)}>
+              <i className="bi bi-trash r-icon"></i>
+            </button>
           </div>
         </ListGroup.Item>
       ))}

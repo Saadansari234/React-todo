@@ -26,10 +26,10 @@ export const reminderApi = createApi({
       invalidatesTags: ["reminders"],
     }),
     updateReminder: builder.mutation({
-      query: ({id, ...updatedval}) => ({
-        url: `/reminder/${id}`,
+      query: ({dataParams,newData}) => ({
+        url: `/reminder/${dataParams}`,
         method: "PATCH",
-        body: updatedval
+        body: newData,
       }),
       invalidatesTags: ["reminders"],
     }),

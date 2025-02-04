@@ -30,7 +30,7 @@ function ReminderForm() {
     <Form onSubmit={handleSubmit}>
       <div className="add-reminder">
         <Form.Group className="reminder-input" controlId="formBasicEmail">
-          <Form.Control onChange={(e) => setReminder(e.target.value)} value={reminder} type="text" placeholder="Enter reminders" />
+          <Form.Control onChange={(e) => setReminder(e.target.value)} value={reminder} type="text" placeholder="Enter reminders" autoComplete="off"  />
         </Form.Group>
 
         <div className="icon-wrapper">
@@ -39,7 +39,7 @@ function ReminderForm() {
         </div>
 
         <button className="reminder-btn" type="submit">
-          <i className="bi bi-send"></i>
+          <i className="bi bi-plus-square"></i>
         </button>
       </div>
     </Form>

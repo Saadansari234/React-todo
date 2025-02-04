@@ -16,6 +16,9 @@ export const reminderSlice = createSlice({
         selectedReminder.isEdit = !selectedReminder.isEdit;
       }
     },
+    // completeReminder: (state, action: PayloadAction<number>) => {
+      
+    // },
   },
 });
 
