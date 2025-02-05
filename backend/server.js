@@ -35,12 +35,21 @@ app.get("/reminders", async (req, res) => {
 app.delete("/reminder/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedReminder = await Reminder.destroy({ where: { id } });
-    console.log(deletedReminder);
-    if (!deletedReminder) {
-      return res.status(404).json({ message: "Reminder not found" });
-    }
-    // res.json({ message: "Reminder deleted successfully!" });
+    await Reminder.destroy({ where: { id } });
+    res.json({ message: "Reminder deleted successfully!" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.patch("/reminder/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { newData } = req.body;
+    await Reminder.update(newData, { where: { id } });
+    const reminder = await Reminder.findOne({ where: { id } });
+    // console.log("dddd", newData);
+    res.json(reminder);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

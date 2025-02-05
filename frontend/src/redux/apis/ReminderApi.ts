@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const reminderApi = createApi({
-  //   reducerPath: "reminderApi",
+  reducerPath: "reminderApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8081" }),
   tagTypes: ["reminders"],
   endpoints: (builder) => ({
@@ -26,14 +26,14 @@ export const reminderApi = createApi({
       invalidatesTags: ["reminders"],
     }),
     updateReminder: builder.mutation({
-      query: ({dataParams,newData}) => ({
+      query: ({ dataParams, newData }) => ({
         url: `/reminder/${dataParams}`,
         method: "PATCH",
-        body: newData,
+        body: {newData},
       }),
       invalidatesTags: ["reminders"],
     }),
   }),
 });
 
-export const { useGetReminderQuery, useAddReminderMutation, useUpdateReminderMutation,useDeleteReminderMutation } = reminderApi;
+export const { useGetReminderQuery, useAddReminderMutation, useUpdateReminderMutation, useDeleteReminderMutation } = reminderApi;

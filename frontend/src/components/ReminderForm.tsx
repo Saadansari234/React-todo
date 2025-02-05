@@ -35,7 +35,7 @@ function ReminderForm() {
 
         <div className="icon-wrapper">
           {isListening ? <VoiceRecorModal transcript={transcript} stopListening={stopListening} setTranscript={setTranscript} /> : <i className="bi bi-mic" onClick={startListening}></i>}
-          {/* <i className="bi bi-mic" onClick={handleListening}></i> */}
+        
         </div>
 
         <button className="reminder-btn" type="submit">

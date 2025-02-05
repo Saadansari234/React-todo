@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { reminderApi } from "./apis/ReminderApi";
-import { reminderSlice } from "./slices/reminderSlice";
 import { additionalSlice } from "./slices/AdditionalSlice";
 const store = configureStore({
   reducer: {
     [reminderApi.reducerPath]: reminderApi.reducer,
-    reminders: reminderSlice.reducer, 
     additional: additionalSlice.reducer
   },
   // Add middleware for caching, invalidation, etc.
