@@ -1,9 +1,9 @@
 import { useGetReminderQuery } from "../redux/apis/ReminderApi";
 import { ListGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import {  useUpdateReminderMutation } from "../redux/apis/ReminderApi";
+import { useUpdateReminderMutation } from "../redux/apis/ReminderApi";
 import { useDeleteReminderMutation } from "../redux/apis/ReminderApi";
-import {  useState } from "react";
+import { useEffect, useState } from "react";
 
 function ReminderList() {
   const { data: fetchedReminders } = useGetReminderQuery();
@@ -18,26 +18,37 @@ function ReminderList() {
 }
 
 interface listgroupsProps {
-  item: Reminders_temp
+  item: Reminders_temp;
 }
 
-const ReminderListItem:React.FC<listgroupsProps> = ({item}) => {
+const ReminderListItem: React.FC<listgroupsProps> = ({ item }) => {
   const [updatedval, setUpdatedVal] = useState<string>("");
   const [updateReminder] = useUpdateReminderMutation();
   const [deleteReminder] = useDeleteReminderMutation();
-  const [isEditing, setIsEditing]= useState<boolean>(false)
+  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const handleSave = (item: Reminders_temp) => {
     if (updatedval.trim() !== "") {
       const dataParams = item.id;
       const newData = { ...item, reminder: updatedval };
       updateReminder({ dataParams, newData });
-      setIsEditing(!isEditing)
+      setIsEditing(!isEditing);
+      setUpdatedVal("")
     }
   };
 
+  const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const dataParams = item.id
+    const newCheckedState = e.target.checked;
+
+    const newData = { ...item, isCompleted: newCheckedState };
+    updateReminder({ dataParams, newData });
+
+    console.log("Updated Data:", newData);
+  };
+
   return (
-    <ListGroup.Item  className="d-flex justify-content-between align-items-center">
+    <ListGroup.Item className="d-flex justify-content-between align-items-center">
       <div>
         {isEditing ? (
           <div>
@@ -48,10 +59,11 @@ const ReminderListItem:React.FC<listgroupsProps> = ({item}) => {
           </div>
         ) : (
           <div className="d-flex gap-2">
-            <input type="checkbox" name="" id="" />
+            <input type="checkbox" name="" id="" onChange={handleChecked} checked={item.isCompleted} />
             <div className="d-flex align-items-center gap-3 ">
-              <i className="bi bi-grip-vertical r-icon"></i>
-              <div>{item.reminder}</div>
+              <div className={`${item.isCompleted ? "checked" : ""}`}>
+                {item.reminder} 
+              </div>
             </div>
           </div>
         )}

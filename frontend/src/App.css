@@ -118,3 +118,7 @@ color: blue;
 .reminder-list .list-right .bi-pencil-square{
   color: goldenrod;
 }
+
+.reminder-list .checked{
+  text-decoration: line-through;
+}
